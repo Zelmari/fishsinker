@@ -15,6 +15,7 @@ public abstract class MacroBase {
     public abstract void run() throws Exception;
 
     protected void drawStatus(String message) throws Exception {
+	screen.doResizeIfNecessary();
         screen.clear();
         TextGraphics tg = screen.newTextGraphics();
         tg.putString(2, 2, message);

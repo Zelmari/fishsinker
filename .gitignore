@@ -8,5 +8,5 @@ build
 .kotlin
 
 ./DS_Store
-.vscode/
+.vscode
 .idea/

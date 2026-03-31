@@ -40,6 +40,7 @@ public class Menu {
     }
 
     private void draw() throws Exception {
+	screen.doResizeIfNecessary();
         screen.clear();
 
         TerminalSize size = screen.getTerminalSize();
