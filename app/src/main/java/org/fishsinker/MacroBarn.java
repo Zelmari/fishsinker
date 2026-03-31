@@ -10,12 +10,12 @@ import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MacroOne extends MacroBase implements NativeKeyListener {
+public class MacroBarn extends MacroBase implements NativeKeyListener {
 
     private volatile boolean macroRunning = false;
     private volatile boolean shouldQuit = false;
 
-    public MacroOne(Screen screen) throws Exception {
+    public MacroBarn(Screen screen) throws Exception {
         super(screen);
     }
 
@@ -48,11 +48,11 @@ public class MacroOne extends MacroBase implements NativeKeyListener {
 
         Robot robot = new Robot();
 
-        drawStatus("MacroOne - Ctrl + K to start");
+        drawStatus("MacroBarn - Ctrl + K to start");
 
         while (!shouldQuit) {
             if (macroRunning) {
-                drawStatus("MacroOne Running - Ctrl + K to stop");
+                drawStatus("MacroBarn Running - Ctrl + K to stop");
 
                 // Take screenshot of the full screen
                 Rectangle fullScreen = new Rectangle(
@@ -66,7 +66,7 @@ public class MacroOne extends MacroBase implements NativeKeyListener {
 
                 Thread.sleep(50); // 20 times per second
             } else {
-                drawStatus("MacroOne - Ctrl + K to start");
+                drawStatus("MacroBarn - Ctrl + K to start");
                 Thread.sleep(100);
             }
 
