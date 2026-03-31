@@ -27,6 +27,9 @@ public class MacroBarn extends MacroBase implements NativeKeyListener {
 
     // How many pixels must match to confirm that bobber is present
     private static final int BOBBER_PIXEL_THRESHOLD = 10;
+    
+    // Settle delay as the rod technically sinks as soon as it enters the water
+    private static final long SETTLE_DELAY_MS = 1500;
 
     public MacroBarn(Screen screen) throws Exception {
         super(screen);
@@ -54,7 +57,7 @@ public class MacroBarn extends MacroBase implements NativeKeyListener {
         Robot robot = new Robot();
         boolean bobberWasVisible = false;
 
-        drawStatus("Barn - move cursor to bobber - CTRL + K to start");
+        drawStatus("Barn - ,cast rod, wait 2s, move cursor to bobber - CTRL + K to start");
 
         while (!shouldQuit) {
 
@@ -83,16 +86,20 @@ public class MacroBarn extends MacroBase implements NativeKeyListener {
                     robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                     robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
 
-                    // wait random 100-300ms offset then right click again to recast
-                    Thread.sleep(100 + random.nextInt(200));
+                    // wait random 200-400ms offset then right click again to recast
+                    Thread.sleep(200 + random.nextInt(200));
                     robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                     robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+
+                    // Adding the settle delay to try and prevent false positives
+                    bobberWasVisible = false;
+                    Thread.sleep(SETTLE_DELAY_MS);
                 }
 
                 bobberWasVisible = bobberVisible;
                 Thread.sleep(50); // Scans 20 times per second
             } else {
-                drawStatus("Barn - move cursor to bobber - CTRL + K to start");
+                drawStatus("Barn - cast rod, wait 2s, move cursor to bobber - CTRL + K to start");
                 Thread.sleep(100);
             }
 
