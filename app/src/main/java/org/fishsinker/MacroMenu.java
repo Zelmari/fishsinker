@@ -55,26 +55,11 @@ public class MacroMenu {
     }
 
     private void draw() throws Exception {
-	screen.doResizeIfNecessary();
+        screen.doResizeIfNecessary();
         screen.clear();
-
-        TerminalSize size = screen.getTerminalSize();
-        int centerCol = size.getColumns() / 2;
-        int centerRow = size.getRows() / 2 - (options.length / 2);
-
         TextGraphics tg = screen.newTextGraphics();
-
-        for (int i = 0; i < options.length; i++) {
-            int row = centerRow + i;
-            int col = centerCol - (options[i].length() / 2);
-
-            if (i == selected) {
-                tg.putString(col, row, "> " + options[i]);
-            } else {
-                tg.putString(col, row, "  " + options[i]);
-            }
-        }
-
+        Renderer.drawOuterBorder(screen, tg, "Select a Macro");
+        Renderer.drawMenuBox(screen, tg, options, selected);
         screen.refresh();
     }
 
