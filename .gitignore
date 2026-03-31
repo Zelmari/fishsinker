@@ -8,5 +8,10 @@ build
 .kotlin
 
 ./DS_Store
-.vscode
+.vscode/
 .idea/
+.settings/
+.project/
+.classpath
+run.sh
+
