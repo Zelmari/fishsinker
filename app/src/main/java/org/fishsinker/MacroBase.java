@@ -18,7 +18,6 @@ public abstract class MacroBase {
         screen.clear();
         TextGraphics tg = screen.newTextGraphics();
         tg.putString(2, 2, message);
-        tg.putString(2, 2, message);
         tg.putString(2, 4, "Press Escape to stop and go back");
         screen.refresh();
     }
