@@ -20,6 +20,7 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
     implementation 'com.googlecode.lanterna:lanterna:3.1.2'
+    implementation 'com.github.kwhat:jnativehook:2.2.2'
 }
 
 testing {
